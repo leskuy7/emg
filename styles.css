@@ -281,7 +281,13 @@ main {
 
 .hero-visual {
   display: grid;
+  grid-template-columns: minmax(190px, 0.48fr) minmax(0, 1fr);
+  grid-template-areas:
+    ". note-right"
+    "panel panel"
+    "note-left accent";
   align-content: center;
+  align-items: start;
   gap: 16px;
   min-height: 560px;
 }
@@ -299,6 +305,7 @@ main {
 }
 
 .panel-main {
+  grid-area: panel;
   min-height: 320px;
   clip-path: polygon(0 0, 100% 0, 100% 72%, 76% 100%, 0 100%);
 }
@@ -348,6 +355,7 @@ main {
 }
 
 .panel-accent {
+  grid-area: accent;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -360,6 +368,7 @@ main {
 .panel-accent p {
   margin: 0;
   font-weight: 800;
+  line-height: 1.35;
 }
 
 .signal-dot {
@@ -371,13 +380,17 @@ main {
 }
 
 .floating-note {
-  position: absolute;
+  position: static;
+  display: grid;
+  align-content: start;
+  gap: 4px;
   padding: 16px 18px;
   border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.84);
   box-shadow: 0 20px 40px rgba(37, 56, 140, 0.16);
-  max-width: 200px;
+  max-width: none;
+  min-height: 116px;
 }
 
 .floating-note strong {
@@ -393,13 +406,13 @@ main {
 }
 
 .note-left {
-  left: -12px;
-  bottom: 120px;
+  grid-area: note-left;
 }
 
 .note-right {
-  right: 8px;
-  top: 34px;
+  grid-area: note-right;
+  justify-self: end;
+  width: min(248px, 100%);
 }
 
 .intro-band {
@@ -566,12 +579,16 @@ main {
   }
 
   .hero-visual {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "panel panel"
+      "note-left note-right"
+      "accent accent";
     min-height: auto;
   }
 
   .floating-note {
-    position: static;
-    max-width: none;
+    min-height: auto;
   }
 }
 
@@ -624,6 +641,16 @@ main {
 
   .hero {
     gap: 18px;
+  }
+
+  .hero-visual {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "panel"
+      "accent"
+      "note-left"
+      "note-right";
+    gap: 12px;
   }
 
   .hero h1 {
@@ -701,6 +728,12 @@ main {
   .floating-note {
     padding: 14px 16px;
     border-radius: 18px;
+    min-height: auto;
+  }
+
+  .note-right {
+    justify-self: stretch;
+    width: auto;
   }
 
   .intro-band {
