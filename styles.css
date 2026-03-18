@@ -281,12 +281,12 @@ main {
 
 .hero-visual {
   display: grid;
-  grid-template-columns: minmax(190px, 0.48fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-areas:
-    ". note-right"
     "panel panel"
-    "note-left accent";
-  align-content: center;
+    "note-left note-right"
+    "accent accent";
+  align-content: start;
   align-items: start;
   gap: 16px;
   min-height: 560px;
@@ -306,7 +306,7 @@ main {
 
 .panel-main {
   grid-area: panel;
-  min-height: 320px;
+  min-height: 400px;
   clip-path: polygon(0 0, 100% 0, 100% 72%, 76% 100%, 0 100%);
 }
 
@@ -359,7 +359,8 @@ main {
   display: flex;
   align-items: center;
   gap: 14px;
-  min-height: 90px;
+  min-height: 108px;
+  padding: 22px 24px;
   background:
     linear-gradient(120deg, rgba(255, 255, 255, 0.95) 0%, rgba(228, 234, 255, 0.9) 100%);
   color: var(--text);
@@ -384,13 +385,13 @@ main {
   display: grid;
   align-content: start;
   gap: 4px;
-  padding: 16px 18px;
+  padding: 20px 22px;
   border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.84);
   box-shadow: 0 20px 40px rgba(37, 56, 140, 0.16);
   max-width: none;
-  min-height: 116px;
+  min-height: 132px;
 }
 
 .floating-note strong {
@@ -411,8 +412,8 @@ main {
 
 .note-right {
   grid-area: note-right;
-  justify-self: end;
-  width: min(248px, 100%);
+  justify-self: stretch;
+  width: auto;
 }
 
 .intro-band {
@@ -579,11 +580,6 @@ main {
   }
 
   .hero-visual {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "panel panel"
-      "note-left note-right"
-      "accent accent";
     min-height: auto;
   }
 
@@ -703,7 +699,7 @@ main {
 
   .panel-main {
     clip-path: none;
-    min-height: 280px;
+    min-height: 320px;
   }
 
   .panel-main::after {
@@ -726,7 +722,7 @@ main {
   }
 
   .floating-note {
-    padding: 14px 16px;
+    padding: 16px 18px;
     border-radius: 18px;
     min-height: auto;
   }
